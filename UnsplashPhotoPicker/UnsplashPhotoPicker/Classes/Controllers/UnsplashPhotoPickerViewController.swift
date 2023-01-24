@@ -55,7 +55,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
         collectionView.backgroundColor = UIColor.photoPicker.background
-        collectionView.allowsMultipleSelection = Configuration.shared.allowsMultipleSelection
+        collectionView.allowsMultipleSelection = UnsplashConfiguration.shared.allowsMultipleSelection
         return collectionView
     }()
 
@@ -90,7 +90,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         return collectionView.indexPathsForSelectedItems?.count ?? 0
     }
 
-    private let editorialDataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
+    private let editorialDataSource = PhotosDataSourceFactory.collection(identifier: UnsplashConfiguration.shared.editorialCollectionId).dataSource
 
     private var previewingContext: UIViewControllerPreviewing?
     private var searchText: String?
@@ -123,7 +123,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         setupCollectionView()
         setupSpinner()
 
-        let trimmedQuery = Configuration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedQuery = UnsplashConfiguration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
         setSearchText(trimmedQuery)
     }
 
@@ -161,14 +161,14 @@ class UnsplashPhotoPickerViewController: UIViewController {
         updateTitle()
         navigationItem.leftBarButtonItem = cancelBarButtonItem
 
-        if Configuration.shared.allowsMultipleSelection {
+        if UnsplashConfiguration.shared.allowsMultipleSelection {
             doneBarButtonItem.isEnabled = false
             navigationItem.rightBarButtonItem = doneBarButtonItem
         }
     }
 
     private func setupSearchController() {
-        let trimmedQuery = Configuration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedQuery = UnsplashConfiguration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
         if let query = trimmedQuery, query.isEmpty == false { return }
 
         navigationItem.searchController = searchController

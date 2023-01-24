@@ -26,7 +26,7 @@ class UnsplashRequest: NetworkRequest {
     // MARK: - Prepare the request
 
     override func prepareURLComponents() -> URLComponents? {
-        guard let apiURL = URL(string: Configuration.shared.apiURL) else {
+        guard let apiURL = URL(string: UnsplashConfiguration.shared.apiURL) else {
             return nil
         }
 
@@ -41,7 +41,7 @@ class UnsplashRequest: NetworkRequest {
 
     override func prepareHeaders() -> [String: String]? {
         var headers = [String: String]()
-        headers["Authorization"] = "Client-ID \(Configuration.shared.accessKey)"
+        headers["Authorization"] = "Client-ID \(UnsplashConfiguration.shared.accessKey)"
         return headers
     }
 

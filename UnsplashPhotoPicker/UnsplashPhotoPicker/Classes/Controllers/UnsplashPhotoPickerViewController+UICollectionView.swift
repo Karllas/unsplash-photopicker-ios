@@ -47,7 +47,7 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let photo = dataSource.item(at: indexPath.item), collectionView.hasActiveDrag == false else { return }
 
-        if Configuration.shared.allowsMultipleSelection {
+        if UnsplashConfiguration.shared.allowsMultipleSelection {
             updateTitle()
             updateDoneButtonState()
         } else {
@@ -56,7 +56,7 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if Configuration.shared.allowsMultipleSelection {
+        if UnsplashConfiguration.shared.allowsMultipleSelection {
             updateTitle()
             updateDoneButtonState()
         }

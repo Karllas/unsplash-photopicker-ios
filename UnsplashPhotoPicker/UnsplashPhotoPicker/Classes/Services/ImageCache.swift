@@ -17,15 +17,15 @@ class ImageCache {
             let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
             let cacheURL = cachesDirectory.appendingPathComponent(diskPath, isDirectory: true)
             return URLCache(
-                memoryCapacity: Configuration.shared.memoryCapacity,
-                diskCapacity: Configuration.shared.diskCapacity,
+                memoryCapacity: UnsplashConfiguration.shared.memoryCapacity,
+                diskCapacity: UnsplashConfiguration.shared.diskCapacity,
                 directory: cacheURL
             )
         } else {
             #if !targetEnvironment(macCatalyst)
             return URLCache(
-                memoryCapacity: Configuration.shared.memoryCapacity,
-                diskCapacity: Configuration.shared.diskCapacity,
+                memoryCapacity: UnsplashConfiguration.shared.memoryCapacity,
+                diskCapacity: UnsplashConfiguration.shared.diskCapacity,
                 diskPath: diskPath
             )
             #else
