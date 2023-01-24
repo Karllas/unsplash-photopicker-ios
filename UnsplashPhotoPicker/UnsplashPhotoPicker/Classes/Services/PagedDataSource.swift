@@ -13,13 +13,13 @@ protocol PagedDataSourceFactory {
     func request(with cursor: UnsplashPagedRequest.Cursor) -> UnsplashPagedRequest
 }
 
-protocol PagedDataSourceDelegate: AnyObject {
+public protocol PagedDataSourceDelegate: AnyObject {
     func dataSourceWillStartFetching(_ dataSource: PagedDataSource)
     func dataSource(_ dataSource: PagedDataSource, didFetch items: [UnsplashPhoto])
     func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error)
 }
 
-class PagedDataSource {
+public class PagedDataSource {
 
     enum DataSourceError: Error {
         case dataSourceIsFetching
@@ -35,22 +35,22 @@ class PagedDataSource {
         }
     }
 
-    private(set) var items = [UnsplashPhoto]()
-    private(set) var error: Error?
+    public private(set) var items = [UnsplashPhoto]()
+    public private(set) var error: Error?
     private let factory: PagedDataSourceFactory
     private var cursor: UnsplashPagedRequest.Cursor
-    private(set) var isFetching = false
+    public private(set) var isFetching = false
     private var canFetchMore = true
     private lazy var operationQueue = OperationQueue(with: "com.unsplash.pagedDataSource")
 
-    weak var delegate: PagedDataSourceDelegate?
+    public weak var delegate: PagedDataSourceDelegate?
 
     init(with factory: PagedDataSourceFactory) {
         self.factory = factory
         self.cursor = factory.initialCursor()
     }
 
-    func reset() {
+    public func reset() {
         operationQueue.cancelAllOperations()
         items.removeAll()
         isFetching = false
@@ -59,7 +59,7 @@ class PagedDataSource {
         error = nil
     }
 
-    func fetchNextPage() {
+    public func fetchNextPage() {
         if isFetching {
             fetchDidComplete(withItems: nil, error: DataSourceError.dataSourceIsFetching)
             return
@@ -103,12 +103,12 @@ class PagedDataSource {
         operationQueue.addOperationWithDependencies(request)
     }
 
-    func cancelFetch() {
+    public func cancelFetch() {
         operationQueue.cancelAllOperations()
         isFetching = false
     }
 
-    func item(at index: Int) -> UnsplashPhoto? {
+    public func item(at index: Int) -> UnsplashPhoto? {
         guard index < items.count else {
             return nil
         }

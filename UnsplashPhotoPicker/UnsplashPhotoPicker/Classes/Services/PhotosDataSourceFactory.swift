@@ -8,11 +8,11 @@
 
 import UIKit
 
-enum PhotosDataSourceFactory: PagedDataSourceFactory {
+public enum PhotosDataSourceFactory: PagedDataSourceFactory {
     case search(query: String)
     case collection(identifier: String)
 
-    var dataSource: PagedDataSource {
+    public var dataSource: PagedDataSource {
         return PagedDataSource(with: self)
     }
 
