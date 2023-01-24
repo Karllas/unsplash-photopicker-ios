@@ -12,7 +12,6 @@ public enum PhotosDataSourceFactory: PagedDataSourceFactory {
     case search(query: String)
     case collection(identifier: String)
 
-    // MARK: Using when we need to explicitly set the Unsplash collection name
     public var dataSource: PagedDataSource {
         return PagedDataSource(with: self)
     }

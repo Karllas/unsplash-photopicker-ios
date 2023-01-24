@@ -35,11 +35,11 @@ public class PagedDataSource {
         }
     }
 
-    private(set) var items = [UnsplashPhoto]()
-    private(set) var error: Error?
+    public private(set) var items = [UnsplashPhoto]()
+    public private(set) var error: Error?
     private let factory: PagedDataSourceFactory
     private var cursor: UnsplashPagedRequest.Cursor
-    private(set) var isFetching = false
+    public private(set) var isFetching = false
     private var canFetchMore = true
     private lazy var operationQueue = OperationQueue(with: "com.unsplash.pagedDataSource")
 
@@ -48,22 +48,6 @@ public class PagedDataSource {
     init(with factory: PagedDataSourceFactory) {
         self.factory = factory
         self.cursor = factory.initialCursor()
-    }
-    
-    public func isEmpty() -> Bool {
-        if items.count == 0 {
-            return true
-        }
-        return false
-    }
-    
-    public func getItems() -> [UnsplashPhoto] {
-        return items
-    }
-    
-    /// MARK: How to better name this func?
-    public func getIsFetching() -> Bool {
-        return isFetching
     }
 
     public func reset() {
