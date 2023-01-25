@@ -45,7 +45,7 @@ public class UnsplashPhotoPicker: UINavigationController {
      - parameter configuration: The configuration struct that specifies how UnsplashPhotoPicker should be configured.
      */
     public init(configuration: UnsplashPhotoPickerConfiguration) {
-        Configuration.shared = configuration
+        UnsplashConfiguration.shared = configuration
 
         self.photoPickerViewController = UnsplashPhotoPickerViewController()
 
@@ -70,7 +70,7 @@ public class UnsplashPhotoPicker: UINavigationController {
 
     private func trackDownloads(for photos: [UnsplashPhoto]) {
         for photo in photos {
-            if let downloadLocationURL = photo.links[.downloadLocation]?.appending(queryItems: [URLQueryItem(name: "client_id", value: Configuration.shared.accessKey)]) {
+            if let downloadLocationURL = photo.links[.downloadLocation]?.appending(queryItems: [URLQueryItem(name: "client_id", value: UnsplashConfiguration.shared.accessKey)]) {
                 URLSession.shared.dataTask(with: downloadLocationURL).resume()
             }
         }

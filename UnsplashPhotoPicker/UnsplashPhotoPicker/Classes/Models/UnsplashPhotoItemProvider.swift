@@ -61,7 +61,7 @@ extension UnsplashPhotoItemProvider: NSItemProviderWriting {
             }
 
             let dataTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
-                if error == nil, let downloadLocationURL = self.photo.links[.downloadLocation]?.appending(queryItems: [URLQueryItem(name: "client_id", value: Configuration.shared.accessKey)]) {
+                if error == nil, let downloadLocationURL = self.photo.links[.downloadLocation]?.appending(queryItems: [URLQueryItem(name: "client_id", value: UnsplashConfiguration.shared.accessKey)]) {
                     let pingDownloadTask = URLSession.shared.dataTask(with: downloadLocationURL)
                     pingDownloadTask.resume()
                 }
