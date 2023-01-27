@@ -12,6 +12,10 @@ public class ImageDownloader {
 
     private var imageDataTask: URLSessionDataTask?
     private let cache = ImageCache.cache
+    
+    public init(imageDataTask: URLSessionDataTask? = nil) {
+        self.imageDataTask = imageDataTask
+    }
 
     public func downloadPhoto(with url: URL, completion: @escaping ((UIImage?, Bool) -> Void)) {
 
