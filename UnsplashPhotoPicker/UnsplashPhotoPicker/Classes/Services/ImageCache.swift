@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageCache {
+public class ImageCache {
 
     static let cache: URLCache = {
         let diskPath = "unsplash"
