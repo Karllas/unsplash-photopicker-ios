@@ -10,7 +10,7 @@ import UIKit
 
 public class ImageCache {
 
-    static let cache: URLCache = {
+    public static let cache: URLCache = {
         let diskPath = "unsplash"
 
         if #available(iOS 13.0, *) {
